@@ -1,0 +1,67 @@
+
+
+
+
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+
+
+td.fitwidth {
+    width: 1px;
+    white-space: nowrap;
+}
+}
+</style>
+</head>
+<body>
+
+<h2>Domain Checker</h2>
+
+<div class="row">
+  <div class="column">
+    <h2>Domains</h2>
+        {% for i in test %}
+        <p>{{ i }}</p>
+        {% endfor %}
+  </div>
+  <div class="column">
+    <h2>Status</h2>
+        {% for i2 in test2 %}
+        <p>{{ i2 }}</p>
+        {% endfor %}
+  </div>
+  <div class="column">
+    <h2>Last Check</h2>
+        {% for i3 in test3 %}
+        <p>{{ i3 }}</p>
+        {% endfor %}
+  </div>
+  <div class="column">
+    <h2>Force Check</h2>
+        {% for i4 in test4 %}
+        <p>{{ i4 }}     <a class="btn btn-primary" href="">Force check</a></p>
+        {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
