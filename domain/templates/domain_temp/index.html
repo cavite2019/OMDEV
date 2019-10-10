@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+<html>
+<head>
+    {% block head %}
+    <title>DomainChecker</title>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Domain Checker</li>
+      </ol>
+    </nav>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+<div class="container">
+  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+      <div class="row">
+            <div class="col-12 col-md-8">
+
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Search" aria-label="inputSearch" aria-describedby="basic-addon1">
+                </div>
+                    <table class="table table-hover table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Domains</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Last Check</th>
+                          <th scope="col">Force Check</th>
+                            <th scope="col">Check</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for domainlines in domainline %}
+                        <tr>
+			            {% for list in domainlines %}
+                            <?php
+                        if ($_GET['run']) {
+                          # This code will run if ?run=true is set.
+                          exec("/path/to/name.sh");
+                        }
+                        ?>
+                          <td>{{ list }}</td>
+			            {% endfor %}
+                        </tr>
+                      {% endfor %}
+
+
+
+
+
+
+
+
+                      </tbody>
+                    </table>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </nav>
+            </div>
+            <div class="col-6 col-md-4">
+
+                <div class="btn-group dropright">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropright
+                  </button>
+                  <div class="dropdown-menu">
+
+                      <a class="dropdown-item" href="#">2-XBET</a>
+                      <a class="dropdown-item" href="#">4-EU</a>
+                      <a class="dropdown-item" href="#">5-BYL</a>
+                      <a class="dropdown-item" href="#">6-JBL</a>
+                      <a class="dropdown-item" href="#">7-XDL</a>
+                      <a class="dropdown-item" href="#">8-JSH</a>
+                      <a class="dropdown-item" href="#">10-GABO</a>
+                      <a class="dropdown-item" href="#">29-XPJ</a>
+
+
+                  </div>
+                </div>
+
+            </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+</body>
+</html>
