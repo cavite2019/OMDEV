@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class DomainConfig(AppConfig):
-    name = 'domain'
+class SsrcheckerConfig(AppConfig):
+    name = 'SSRCHECKER'

@@ -1,47 +1,33 @@
 from django.db import models
-import sqlite3
-from .dom_mod.domain2 import *
+import datetime
 
 # Create your models here.
+class SSRinitModel(models.Model):
+    IP = models.CharField(max_length=16,null=True)
+    PORT = models.IntegerField(null=True)
+    USER = models.CharField(max_length=15, null=True)
+    PASSWORD = models.CharField(max_length=50, null=True)
+    IDC = models.CharField(max_length=20, null=True)
 
-class Domain_c():
-    def __init__(self):
-        self.db_table = "domainlist"
-        self.db_column1 = "domains"
-        self.db_column2 = "status"
-        self.db_column3 = "lastcheck"
-        self.db_column4 = "forcecheck"
-        self.db_conn = sqlite3.connect('dom_mod/domain.db')
-        self.cursor = self.db_conn.cursor()
-    def querydomain(self):
-        self.cursor.execute("SELECT {} FROM {}".format(self.db_column1,self.db_table))
-        output = self.cursor.fetchall()
-        d_list = []
-        for i in output:
-            d_list.append(i[0])
-        return d_list
-    def querystatus(self, domain):
-        self.cursor.execute("SELECT {} FROM {} WHERE {}=?".format(self.db_column2, self.db_table, self.db_column1), (str(domain),))
-        output = self.cursor.fetchall()
-        return output[0][0]
-    def querydate(self, domain):
-        self.cursor.execute("SELECT {} FROM {} WHERE {}=?".format(self.db_column3, self.db_table, self.db_column1), (str(domain),))
-        output = self.cursor.fetchall()
-        return output[0][0]
-    def queryfc(self, domain):
-        self.cursor.execute("SELECT {} FROM {} WHERE {}=?".format(self.db_column4, self.db_table, self.db_column1), (str(domain),))
-        output = self.cursor.fetchall()
-        return output[0][0]
-    def updatefc(self,f_domain,f_domain_column1="domains",f_table="domainlist",f_domain_column4="forcecheck"):
-        self.cursor.execute("SELECT * FROM {} WHERE domains=?".format(f_table),(str(f_domain),))
-        d_list_tuple = self.cursor.fetchall()[0]
-        f_check_str = domain_status(d_list_tuple[0]) + " - " + str(datetime.datetime.now())
-        self.cursor.execute("UPDATE {0} SET {1}=? WHERE {2}=? ".format(f_table, f_domain_column4, f_domain_column1),(f_check_str,str(f_domain)))
-        self.db_conn.commit()
-        self.db_conn.close()
-        return f_check_str
+    def __str__(self):
+        return self.IP
 
 
+class SSRIDCModel(models.Model):
+    IDC = models.CharField(max_length=20, null=True)
+    def __str__(self):
+        return self.IDC
 
 
-
+class SSRinitdataModel(models.Model):
+    USERNAME = models.CharField(max_length=50,null=True)
+    IP = models.CharField(max_length=16,null=True)
+    PORT = models.IntegerField(null=True)
+    STATUS = models.CharField(max_length=10, null=True)
+    SSR_LINK = models.TextField(null=True)
+    SSR_CODE = models.TextField(null=True)
+    LOGS = models.TextField(null=True)
+    IDC = models.CharField(max_length=20, null=True)
+    CREATED = models.DateTimeField(default=datetime.datetime.now(), null=True)
+    def __str__(self):
+        return self.IP
